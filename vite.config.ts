@@ -2,19 +2,9 @@ import tailwindcss from "@tailwindcss/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
 import { nitro } from "nitro/vite";
-import path from "node:path";
-import url from "node:url";
 import { defineConfig, loadEnv } from "vite";
 
-const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const routeTemplate = `import { createFileRoute } from "@tanstack/react-router";
-
-export const Route = createFileRoute("/test")({
-  component: () => {
-  return <div>Hello "/"!</div>;
-  },
-});`;
+import { routeTemplate } from "./route-template";
 
 export default defineConfig(({ mode }) => {
   // eslint-disable-next-line node/prefer-global/process
@@ -27,9 +17,6 @@ export default defineConfig(({ mode }) => {
     plugins: [
       tailwindcss(),
       tanstackStart({
-        server: {
-          entry: path.resolve(__dirname, "src/server.ts"),
-        },
         router: {
           customScaffolding: {
             routeTemplate,
@@ -41,12 +28,17 @@ export default defineConfig(({ mode }) => {
         devServer: {
           port: Number(env.PORT),
         },
-        serverEntry: path.resolve(__dirname, "src/server.ts"),
-        serveStatic: "node",
         preset: "cloudflare_module",
         cloudflare: {
           deployConfig: true,
           nodeCompat: true,
+          wrangler: {
+            workers_dev: false,
+            preview_urls: false,
+            compatibility_flags: [
+              "nodejs_compat",
+            ],
+          },
         },
       }),
     ],
