@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => {
           deployConfig: true,
           nodeCompat: true,
           wrangler: {
-            workers_dev: false,
+            workers_dev: true,
             preview_urls: false,
             compatibility_flags: [
               "nodejs_compat",
