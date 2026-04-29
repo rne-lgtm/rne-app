@@ -12,6 +12,8 @@ export default antfu({
     quotes: "double",
   },
   ignores: [
+    ".wrangler/*",
+    ".pnpm-store/*",
     "./**/*.gen.ts",
   ],
   languageOptions: {

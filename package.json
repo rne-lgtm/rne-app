@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint . --fix",
+    "lint": "eslint .",
     "preview": "vite preview",
     "stage": "npx simple-git-hooks"
   },
@@ -39,7 +39,8 @@
     "simple-git-hooks": "^2.13.1",
     "tailwindcss": "^4.2.4",
     "typescript": "^6.0.3",
-    "vite": "^8.0.10"
+    "vite": "^8.0.10",
+    "wrangler": "^4.86.0"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
