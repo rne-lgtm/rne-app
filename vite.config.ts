@@ -43,6 +43,11 @@ export default defineConfig(({ mode }) => {
         },
         serverEntry: path.resolve(__dirname, "src/server.ts"),
         serveStatic: "node",
+        preset: "cloudflare_module",
+        cloudflare: {
+          deployConfig: true,
+          nodeCompat: true,
+        },
       }),
     ],
   };
